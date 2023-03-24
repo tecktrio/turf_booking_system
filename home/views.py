@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
-from .models import Booked_turf, Turf, Users
+from .models import Booked_turf, Contact, Manager_Requests, Turf, Users
 
 # Create your views here.
 def get_user(request):
@@ -35,6 +35,7 @@ def login(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
+
         if email =='':
             login_status = 'Email field cannot be empty'
             return render(request,'login.html',{'login_status':login_status})
@@ -57,9 +58,93 @@ def logout(request):
     response = redirect(home)
     response.delete_cookie('email')
     return response
+def manage(request):
+    user = get_user(request)
+    if request.method == 'POST':
+        request =  Manager_Requests.objects.create(user = user)
+        request.save()
+        user.manager_status = 'Pending'
+        user.save()
+        return redirect(profile)
+    if user:
+        turfs = Turf.objects.filter(user_email = user.email)
+        return render(request,"manage.html",{'turfs':turfs})
+    else:
+        return redirect(login)
+def add_turf(request):
+    user = get_user(request)
+    if user:
+        if request.method == 'POST':
 
+            user_email = request.POST.get('user_email')
+            turf_name = request.POST.get('turf_name')
+            if turf_name:
+                pass
+            else:
+                print('failed turf name')
+                return redirect(add_turf)
+            location = request.POST.get('location')
+            if location:
+                pass
+            else:
+                print('failed location')
+                return redirect(add_turf)
+            price = request.POST.get('price')
+            if price:
+                pass
+            else:
+                print('failed price')
+                return redirect(add_turf)
+            
+            image = request.FILES.get('image')
+            if image:
+                pass
+            else:
+                print('failed image')
+                return redirect(add_turf)
+            
+            description = request.POST.get('description')
+            if description:
+                pass
+            else:
+                print('failed description')
+                return redirect(add_turf)
+            start = request.POST.get('start')
+            if start:
+                pass
+            else:
+                print('failed start')
+                return redirect(add_turf)
+            end = request.POST.get('end')
+            if end:
+                pass
+            else:
+                print('failed end')
+                return redirect(add_turf)
+            turf_size = request.POST.get('turf_size')
+            if turf_size:
+                pass
+            else:
+                print('failed size')
+                return redirect(add_turf)
+            contact = request.POST.get('contact')
+            if contact:
+                pass
+            else:
+                print('failed contact')
+                return redirect(add_turf)
+            
+            print('done')
+            new_turf = Turf.objects.create(turf_name = turf_name,location=location,price=price,turf_image= image,description=description,start='10:2',end='10:4',turf_size=turf_size,contact=contact,user_email=user_email)
+            new_turf.save()
+
+            return HttpResponse('saved')
+        return render(request, 'add_turf.html',{'user':user})
+    else:
+        return redirect(login)
 def index(request):
     user = get_user(request)
+
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -102,8 +187,12 @@ def delete(request,turf_name):
 
 def contact(request):
     user = get_user(request)
+    if request.method == 'POST':
+        new_contact = Contact.objects.create(name = request.POST.get('name'),email = request.POST.get('email'),subject =request.POST.get('subject'),message = request.POST.get('message'))
+        new_contact.save()
+        return redirect(home)
     if user:
-        return render(request,'contact.html')
+        return render(request,'contact.html',{'user':user})
     return redirect(login)
 
 def register(request):

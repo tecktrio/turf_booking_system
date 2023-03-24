@@ -70,14 +70,25 @@ td {
                   </div>
               </div>
               
+{% if user.manager_status == "True" %}
+{% elif user.manager_status == 'False' %}<form action="/manage" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary mb-3">Request For Manager Permission</button>
+              </form>
+{% else %}
+<button class="btn btn-secondary mb-3">Request Pending  </button>
 
-
+              {% endif %}
               </div>
+              
+
 
             </div>
+
           </div>
         </div>
       </div>
+      
     </div>
   </section>
 

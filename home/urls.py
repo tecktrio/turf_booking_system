@@ -11,4 +11,6 @@ urlpatterns = [
     path('delete/<str:turf_name>',views.delete),
     path('book/<str:id>',views.book),
     path('bookturf',views.bookturf),
+    path('manage',views.manage),
+    path('add_turf',views.add_turf),
 ]

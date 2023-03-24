@@ -11,7 +11,12 @@
     <li><a href="/logout">Logout</a></li>
     {% else %}
     <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
     {% endif %}
+    {% if user.manager_status == "True" %}
+    <li><a href="/manage">Manage</a></li>
+    {% endif %}
+
   </ul>
 <hr/>
 <div style="margin:50px 150px">

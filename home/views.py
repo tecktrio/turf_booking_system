@@ -244,3 +244,84 @@ def book(request,id):
         turf = Turf.objects.get(id=id)
         return render(request,'book.html',{'turf':turf,'user':user})
     return redirect(login)
+
+def edit_turf(request,id):
+    user = get_user(request)
+    if user:
+        if request.method == 'POST':
+
+            user_email = request.POST.get('user_email')
+            turf_name = request.POST.get('turf_name')
+            if turf_name:
+                pass
+            else:
+                print('failed turf name')
+                return redirect(add_turf)
+            location = request.POST.get('location')
+            if location:
+                pass
+            else:
+                print('failed location')
+                return redirect(add_turf)
+            price = request.POST.get('price')
+            if price:
+                pass
+            else:
+                print('failed price')
+                return redirect(add_turf)
+            
+            image = request.FILES.get('image')
+            if image:
+                pass
+            else:
+                print('failed image')
+                return redirect(add_turf)
+            
+            description = request.POST.get('description')
+            if description:
+                pass
+            else:
+                print('failed description')
+                return redirect(add_turf)
+            start = request.POST.get('start')
+            if start:
+                pass
+            else:
+                print('failed start')
+                return redirect(add_turf)
+            end = request.POST.get('end')
+            if end:
+                pass
+            else:
+                print('failed end')
+                return redirect(add_turf)
+            turf_size = request.POST.get('turf_size')
+            if turf_size:
+                pass
+            else:
+                print('failed size')
+                return redirect(add_turf)
+            contact = request.POST.get('contact')
+            if contact:
+                pass
+            else:
+                print('failed contact')
+                return redirect(add_turf)
+            
+            print('done')
+            new_turf = Turf.objects.get(id = id)
+            new_turf.turf_name = turf_name
+            new_turf.location=location
+            new_turf.price=price
+            new_turf.turf_image= image
+            new_turf.description=description
+            new_turf.start='10:2'
+            new_turf.end='10:4'
+            new_turf.turf_size=turf_size
+            new_turf.contact=contact
+            new_turf.user_email=user_email
+            new_turf.save()
+            return redirect(home)
+
+    turf = Turf.objects.get(id=id)
+    return render(request,'edit_turf.html',{'turf':turf})

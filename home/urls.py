@@ -13,4 +13,5 @@ urlpatterns = [
     path('bookturf',views.bookturf),
     path('manage',views.manage),
     path('add_turf',views.add_turf),
+    path('edit_turf/<int:id>',views.edit_turf),
 ]

@@ -92,8 +92,11 @@
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <img src="/media/{{turf.turf_image}}" alt="Image">
+            <h4>Turf Details</h4>
+            <p>Here you can carefully see the details of this turf.</p>
+            <p></p>
+            <div>
+              <img src="/media/{{turf.turf_image}}" alt="Image" style="width: 300px;">
               <div class="carousel-caption">
                 <form action="/bookturf" method="post">
                   {% csrf_token %}
@@ -137,7 +140,7 @@
       </div>
     </div>
     <br>
-    <hr>
+
 
 
     <hr>

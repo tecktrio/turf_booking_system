@@ -50,6 +50,7 @@ td {
                     <td>Booked Date</td>
                     <td>Location</td>
                     <td>Contact</td>
+                    <td>Slot</td>
                     <td></td>
                   </tr>
                   {% for turf in booked_turf %}
@@ -59,6 +60,7 @@ td {
                     <td>{{turf.time}}</td>
                     <td>{{turf.location}}</td>
                     <td>{{turf.contact}}</td>
+                    <td>{{turf.slot}}</td>
                     <td><a href="/delete/{{turf.turf_name}}"><button class="btn btn-danger">cancel</button></a></td>
                   </tr>
                   {% endfor %}

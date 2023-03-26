@@ -8,10 +8,21 @@ class Turf(models.Model):
     price = models.IntegerField()
     turf_image = models.ImageField(upload_to ='turf_images')
     description = models.CharField(max_length=255,default="")
-    start = models.TimeField()
-    end = models.TimeField()
     turf_size = models.CharField(max_length=40)
     contact = models.IntegerField(default=0)
+    slot_9_10a = models.BooleanField(default=False)#from 9 am to 10 am
+    slot_10_11 = models.BooleanField(default=False)# from 10 am to 11 am
+    slot_11_12 = models.BooleanField(default=False)# from 11 am to 12 pm
+    slot_12_1 = models.BooleanField(default=False)# from 12 pm to 1 pm
+    slot_1_2 = models.BooleanField(default=False)#from 1pm to 2 pm
+    slot_2_3 = models.BooleanField(default=False)#from 2pm to 3pm 
+    slot_3_4= models.BooleanField(default=False)#from 3pm to 4pm
+    slot_4_5 = models.BooleanField(default=False)#from 4pm to 5pm
+    slot_5_6 = models.BooleanField(default=False)#from 5pm to 6pm 
+    slot_6_7 = models.BooleanField(default=False)#from 6pm to 7pm 
+    slot_7_8= models.BooleanField(default=False)# from 7pm to 8pm
+    slot_8_9 = models.BooleanField(default=False)#from 8pm to 9pm
+    slot_9_10 = models.BooleanField(default=False)#from 9pm to 10pm
     
     def __str__(self):
         return self.turf_name

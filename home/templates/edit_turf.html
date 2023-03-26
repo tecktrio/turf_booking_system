@@ -11,7 +11,7 @@
 </head>
 <body class="d-flex justify-content-center">
         <div class="m-5" style="width: 20%;">
-        <h4>Add Turf</h4>
+        <h4>Edit Turf</h4>
         <p>adding turf to our site can make more audience to your site.</p>
         <form action="/edit_turf/{{turf.id}}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
@@ -19,10 +19,89 @@
           <div class="d-flex flex-column"><label>Turf Name</label> <input type="text" name="turf_name" class="rounded border border-secondary " required value="{{turf.turf_name}}"></div>
           <div class="d-flex flex-column"><label>location</label> <input type="text" name="location" class="rounded border border-secondary" required value="{{turf.location}}"></div>
           <div class="d-flex flex-column"><label>price</label> <input type="text" name = 'price' class="rounded border border-secondary" required value="{{turf.price}}"></div>
+          <div class="">
+            {% if turf.slot_9_10a %}
+            <input type="checkbox" name="9_10a" id="9_10a"  class="m-2" checked><label for="9_10a">9 am : 10 am </label><br>
+            {%else%}
+            <input type="checkbox" name="9_10a" id="9_10a"  class="m-2" ><label for="9_10a">9 am : 10 am </label><br>
+            {%endif%}
+
+            {% if turf.slot_10_11 %}
+            <input type="checkbox" name="10_11" id="10_11"  class="m-2" checked><label for="10_11">10 am : 11 am </label><br>
+            {% else %}
+            <input type="checkbox" name="10_11" id="10_11"  class="m-2"><label for="10_11">10 am : 11 am </label><br>
+            {% endif %}
+
+            {% if turf.slot_11_12 %}
+            <input type="checkbox" name="11_12" id="11_12"  class="m-2" checked><label for="11_12">11 am : 12 am </label><br>
+            {% else %}
+            <input type="checkbox" name="11_12" id="11_12"  class="m-2"><label for="11_12">11 am : 12 am </label><br>
+            {% endif %}
+
+            
+
+            {% if turf.slot_12_1 %}
+            <input type="checkbox" name="12_1" id="12_1"  class="m-2" checked><label for="11_12">12 am : 1 am </label><br>
+            {% else %}
+            <input type="checkbox" name="12_1" id="12_1"  class="m-2"><label for="11_12">12 am : 1 am </label><br>
+            {% endif %}
+
+            {% if turf.slot_1_2 %}
+            <input type="checkbox" name="1_2" id="1_2"  class="m-2" checked><label for="1_2">1 pm : 2 pm </label><br>
+            {% else %}
+            <input type="checkbox" name="1_2" id="1_2"  class="m-2"><label for="1_2">1 pm : 2 pm </label><br>
+            {% endif %}
+
+            {% if turf.slot_2_3 %}
+            <input type="checkbox" name="2_3" id="2_3"  class="m-2" checked><label for="2_3">2 pm : 3 pm </label><br>
+            {%else%}
+            <input type="checkbox" name="2_3" id="2_3"  class="m-2"><label for="2_3">2 pm : 3 pm </label><br>
+            {% endif %}
+
+            {% if turf.slot_3_4 %}
+            <input type="checkbox" name="3_4" id="3_4" class="m-2" checked><label for="3_4">3 pm : 4 pm </label><br>
+            {% else %}
+            <input type="checkbox" name="3_4" id="3_4" class="m-2"><label for="3_4">3 pm : 4 pm </label><br>
+            {% endif %}
+            
+            {% if turf.slot_4_5 %}
+            <input type="checkbox" name="4_5" id="4_5"  class="m-2" checked><label for="4_5">4 pm : 5 pm </label><br>
+            {% else %}
+            <input type="checkbox" name="4_5" id="4_5"  class="m-2"><label for="4_5">4 pm : 5 pm </label><br>
+            {%endif%}
+
+            {%if turf.slot_5_6%}
+            <input type="checkbox" name="5_6" id="5_6"  class="m-2" checked><label for="5_6">5 pm : 6 pm </label><br>
+            {%else%}
+            <input type="checkbox" name="5_6" id="5_6"  class="m-2"><label for="5_6">5 pm : 6 pm </label><br>
+            {%endif%}
+
+            {%if turf.slot_6_7%}
+            <input type="checkbox" name="6_7" id="6_7"  class="m-2" checked><label for="6_7">6 pm : 7 pm </label><br>
+            {%else%}
+            <input type="checkbox" name="6_7" id="6_7"  class="m-2"><label for="6_7">6 pm : 7 pm </label><br>
+            {%endif%}
+
+            {%if turf.slot_7_8%}
+            <input type="checkbox" name="7_8" id="7_8"  class="m-2" checked><label for="7_8">7 pm : 8 pm </label><br>
+            {%else%}
+            <input type="checkbox" name="7_8" id="7_8"  class="m-2"><label for="7_8">7 pm : 8 pm </label><br>
+            {%endif%}
+
+            {%if turf.slot_8_9%}
+            <input type="checkbox" name="8_9" id="8_9"  class="m-2" checked><label for="8_9">8 pm : 9 pm </label><br>
+            {%else%}
+            <input type="checkbox" name="8_9" id="8_9"  class="m-2"><label for="8_9">8 pm : 9 pm </label><br>
+            {%endif%}
+
+            {%if turf.slot_9_10%}
+            <input type="checkbox" name="9_10" id="9_10"  class="m-2" checked><label for="9_10">9 pm : 10 pm </label><br>
+            {%else%}
+            <input type="checkbox" name="9_10" id="9_10"  class="m-2"><label for="9_10">9 pm : 10 pm </label><br>
+            {%endif%}
+         </div>
           <div  class="d-flex flex-column"><label>Turf Image</label> <input type="file" name="image" class="rounded border border-secondary" required value="{{turf.turf_image}}"></div>
           <div class="d-flex flex-column"><label>description</label> <input type="text" name="description" class="rounded border border-secondary" required value="{{turf.description}}"></div>
-          <div class="d-flex flex-column"><label>start</label> <input type="date" name="start" class="rounded border border-secondary" required value="{{turf.start}}"></div>
-          <div class="d-flex flex-column"><label>end</label> <input type="date" name="end" class="rounded border border-secondary" required value="{{turf.end}}"></div>
           <div class="d-flex flex-column"><label>Turf size</label> <input type="text" name="turf_size" class="rounded border border-secondary" required value="{{turf.turf_size}}"></div>
           <div class="d-flex flex-column"><label>Contact</label> <input type="text" name="contact" class="rounded border border-secondary" required value="{{turf.contact}}"></div>
           <button class="btn btn-primary mt-4">Upload Turf</button>

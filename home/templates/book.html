@@ -78,7 +78,8 @@
 
   <ul>
     <li><a class="/active" href="/">Home</a></li>
-    <li><a href="/profile/">Profile</a></li>
+    <li><a href="/profile
+      ">Profile</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/">Logout</a></li>
   </ul>
@@ -153,12 +154,89 @@
       properties.</p>
     <br>
     <div class="row">
-      <div class="col-sm-4 fs-2">
+      <div class="col-sm-12 fs-2 d-flex">
 
-        <input type="radio" value="slot 1" style="border: none;" name="slot" id="r1" checked> <label id="r11"
-          class="btn btn-danger " for="r1">slot 1 - 6 - 7</label></input><br><br>
-        <input type="radio" value="slot 2" name="slot" id="r2" style="border: none;"> <label class="btn btn-primary "
-          for="r2" id="r12">slot 2 - 7 - 8</label>
+        <!-- slots -->
+        {% if turf.slot_9_10 or turf.slot_9_10a or turf.slot_10_11 or turf.slot_11_12 or turf.slot_12_1 or turf.slot_1_2 or turf.slot_2_3 or turf.slot_3_4 or turf.slot_4_5 or turf.slot_5_6 or turf.slot_6_7 or turf.slot_7_8 or turf.slot_8_9 or turf.slot_9_10  %}
+        {% if turf.slot_9_10a %}
+        <input type="radio" value="9_10" style="border: none;margin: 20px;" name="slot" id="9_10"> <label
+        class="btn btn-primary " for="9_10">9 am : 10 am</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_10_11 %}
+        <input type="radio" value="10_11" style="border: none;margin: 20px;" name="slot" id="10_11"> <label
+        class="btn btn-primary " for="10_11">10 am : 11 am</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_11_12 %}
+        <input type="radio" value="11_12" style="border: none;margin: 20px;" name="slot" id="11_12"> <label
+        class="btn btn-primary " for="11_12">11 am : 12 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_12_1 %}
+        <input type="radio" value="12_1" style="border: none;margin: 20px;" name="slot" id="12_1"> <label
+        class="btn btn-primary " for="12_1">12 pm : 1 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_1_2 %}
+        <input type="radio" value="1_2" style="border: none;margin: 20px;" name="slot" id="1_2"> <label
+        class="btn btn-primary " for="1_2">1 pm : 2 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        {% if turf.slot_2_3 %}
+        <input type="radio" value="2_3" style="border: none;margin: 20px;" name="slot" id="2_3"> <label
+        class="btn btn-primary " for="2_3">2 pm : 3 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_3_4 %}
+        <input type="radio" value="3_4" style="border: none;margin: 20px;" name="slot" id="3_4"> <label
+        class="btn btn-primary " for="3_4">3 pm : 4 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_4_5 %}
+        <input type="radio" value="4_5" style="border: none;margin: 20px;" name="slot" id="4_5"> <label
+        class="btn btn-primary " for="4_5">4 pm : 5 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_5_6 %}
+        <input type="radio" value="5_6" style="border: none;margin: 20px;" name="slot" id="5_6"> <label
+        class="btn btn-primary " for="5_6">5 pm :6 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_6_7 %}
+        <input type="radio" value="6_7" style="border: none;margin: 20px;" name="slot" id="6_7"> <label
+        class="btn btn-primary " for="6_7">6 pm : 7  pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_7_8 %}
+        <input type="radio" value="7_8" style="border: none;margin: 20px;" name="slot" id="7_8"> <label
+        class="btn btn-primary " for="7_8">7 pm : 8 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        <!-- slots -->
+        {% if turf.slot_8_9 %}
+        <input type="radio" value="8_9" style="border: none;margin: 20px;" name="slot" id="8_9"> <label
+        class="btn btn-primary " for="8_9">8 pm : 9 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        {% if turf.slot_9_10 %}
+        <input type="radio" value="9_10" style="border: none;margin: 20px;" name="slot" id="9_10"> <label
+        class="btn btn-primary " for="9_10">9 pm : 10 pm</label>
+        {% endif %}
+        <!-- end slots -->
+        {% else %}
+        <P style="color: red;">Sorry this Turf does not have any slots available... </P>
+        {% endif %}
+    
       </div>
 
     </div><br>

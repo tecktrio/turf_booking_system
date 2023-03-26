@@ -16,12 +16,43 @@ def bookturf(request):
     user = get_user(request)
     if request.method == 'POST':
         slot = request.POST.get('slot')
+        if not slot:
+            return HttpResponse('please select the slot')
         price = int(request.POST.get('price'))
         location =request.POST.get('location')
         turf_name = request.POST.get('turf_name')
         turf = Turf.objects.get(turf_name = turf_name)
         if Booked_turf.objects.filter(turf_name = turf_name).exists():
             return render(request,"b_failed.html")
+        
+        if slot == '9_10a':
+            turf.slot_9_10a = False
+        if slot == '10_11':
+            turf.slot_10_11 = False
+        if slot == '11_12':
+            turf.slot_1_2 = False
+        if slot == '1_2':
+            turf.slot_1_2 = False
+        if slot == '2_3':
+            turf.slot_2_3 = False
+        if slot == '3_4':
+            turf.slot_3_4 = False
+        if slot == '4_5':
+            turf.slot_4_5 = False
+        if slot == '5_6':
+            turf.slot_5_6 = False
+        if slot == '6_7':
+            turf.slot_6_7 = False
+        if slot == '7_8':
+            turf.slot_7_8 = False
+        if slot == '8_9':
+            turf.slot_2_3 = False
+        if slot == '9_10':
+            turf.slot_2_3 = False
+
+        turf.save()
+
+
         booked_turf = Booked_turf.objects.create(email = user.email,turf_name=turf_name,slot = slot,price=price,location =location,contact = int(turf.contact))
         booked_turf.save()
         return render(request,"b_success.html")
@@ -58,6 +89,7 @@ def logout(request):
     response = redirect(home)
     response.delete_cookie('email')
     return response
+
 def manage(request):
     user = get_user(request)
     if request.method == 'POST':
@@ -71,6 +103,7 @@ def manage(request):
         return render(request,"manage.html",{'turfs':turfs})
     else:
         return redirect(login)
+    
 def add_turf(request):
     user = get_user(request)
     if user:
@@ -109,18 +142,7 @@ def add_turf(request):
             else:
                 print('failed description')
                 return redirect(add_turf)
-            start = request.POST.get('start')
-            if start:
-                pass
-            else:
-                print('failed start')
-                return redirect(add_turf)
-            end = request.POST.get('end')
-            if end:
-                pass
-            else:
-                print('failed end')
-                return redirect(add_turf)
+         
             turf_size = request.POST.get('turf_size')
             if turf_size:
                 pass
@@ -134,8 +156,50 @@ def add_turf(request):
                 print('failed contact')
                 return redirect(add_turf)
             
+            slot_9_10a = False
+            slot_10_11 = False
+            slot_11_12 = False
+            slot_12_1 = False
+            slot_1_2 = False
+            slot_2_3 = False
+            slot_3_4= False
+            slot_4_5= False
+            slot_5_6= False
+            slot_6_7= False
+            slot_7_8= False
+            slot_8_9= False
+            slot_9_10= False
+          
+
+            if request.POST.get('9_10a')=="on":
+                slot_9_10a = True
+            if request.POST.get('10_11') == 'on':
+                slot_10_11 = True
+            if request.POST.get('11_12') == 'on':
+                slot_11_12 = True
+            if request.POST.get('12_1') == 'on':
+                slot_12_1 = True
+            if request.POST.get('1_2') == 'on':
+                slot_1_2 = True
+            if request.POST.get('2_3') == 'on':
+                slot_2_3 = True
+            if request.POST.get('3_4') == 'on':
+                slot_3_4= True
+            if request.POST.get('4_5') == 'on':
+                slot_4_5 = True
+            if request.POST.get('5_6') == 'on':
+                slot_5_6 = True
+            if request.POST.get('6_7') == 'on':
+                slot_6_7 = True
+            if request.POST.get('7_8') == 'on':
+                slot_7_8 = True
+            if request.POST.get('8_9') == 'on':
+                slot_8_9 = True
+            if request.POST.get('9_10') == 'on':
+                slot_9_10 = True
+            
             print('done')
-            new_turf = Turf.objects.create(turf_name = turf_name,location=location,price=price,turf_image= image,description=description,start='10:2',end='10:4',turf_size=turf_size,contact=contact,user_email=user_email)
+            new_turf = Turf.objects.create(turf_name = turf_name,location=location,price=price,turf_image= image,description=description,turf_size=turf_size,contact=contact,user_email=user_email,slot_9_10a = slot_9_10a,slot_10_11 = slot_10_11,slot_11_12 = slot_11_12,slot_12_1 = slot_12_1,slot_1_2 = slot_1_2,slot_2_3 = slot_2_3,slot_3_4 = slot_3_4,slot_4_5 = slot_4_5,slot_5_6 = slot_5_6,slot_6_7 = slot_6_7,slot_7_8 = slot_7_8,slot_8_9 = slot_8_9,slot_9_10 = slot_9_10)
             new_turf.save()
 
             return HttpResponse('saved')
@@ -180,6 +244,7 @@ def profile(request):
 def delete(request,turf_name):
     user = get_user(request)
     # print(turf_name)
+    turf = Turf.objects.get(turf_name=turf_name)
     myturf = Booked_turf.objects.filter(turf_name = turf_name).delete()
     # print(myturf.turf_name)
     
@@ -283,18 +348,7 @@ def edit_turf(request,id):
             else:
                 print('failed description')
                 return redirect(add_turf)
-            start = request.POST.get('start')
-            if start:
-                pass
-            else:
-                print('failed start')
-                return redirect(add_turf)
-            end = request.POST.get('end')
-            if end:
-                pass
-            else:
-                print('failed end')
-                return redirect(add_turf)
+            
             turf_size = request.POST.get('turf_size')
             if turf_size:
                 pass
@@ -315,11 +369,65 @@ def edit_turf(request,id):
             new_turf.price=price
             new_turf.turf_image= image
             new_turf.description=description
-            new_turf.start='10:2'
-            new_turf.end='10:4'
             new_turf.turf_size=turf_size
             new_turf.contact=contact
-            new_turf.user_email=user_email
+            new_turf.user_email=user.email
+
+            slot_9_10a = False
+            slot_10_11 = False
+            slot_11_12 = False
+            slot_12_1 = False
+            slot_1_2 = False
+            slot_2_3 = False
+            slot_3_4= False
+            slot_4_5= False
+            slot_5_6= False
+            slot_6_7= False
+            slot_7_8= False
+            slot_8_9= False
+            slot_9_10= False
+
+            if request.POST.get('9_10a')=="on":
+                slot_9_10a = True
+            if request.POST.get('10_11') == 'on':
+                slot_10_11 = True
+            if request.POST.get('11_12') == 'on':
+                slot_11_12 = True
+            if request.POST.get('12_1') == 'on':
+                slot_12_1 = True
+            if request.POST.get('1_2') == 'on':
+                slot_1_2 = True
+            if request.POST.get('2_3') == 'on':
+                slot_2_3 = True
+            if request.POST.get('3_4') == 'on':
+                slot_3_4= True
+            if request.POST.get('4_5') == 'on':
+                slot_4_5 = True
+            if request.POST.get('5_6') == 'on':
+                slot_5_6 = True
+            if request.POST.get('6_7') == 'on':
+                slot_6_7 = True
+            if request.POST.get('7_8') == 'on':
+                slot_7_8 = True
+            if request.POST.get('8_9') == 'on':
+                slot_8_9 = True
+            if request.POST.get('9_10') == 'on':
+                slot_9_10 = True
+
+            new_turf.slot_9_10a = slot_9_10a
+            new_turf.slot_10_11 = slot_10_11
+            new_turf.slot_11_12 = slot_11_12
+            new_turf.slot_12_1 = slot_12_1
+            new_turf.slot_1_2 = slot_1_2
+            new_turf.slot_2_3 = slot_2_3
+            new_turf.slot_3_4 = slot_3_4
+            new_turf.slot_4_5 = slot_4_5
+            new_turf.slot_5_6 = slot_5_6
+            new_turf.slot_6_7 = slot_6_7
+            new_turf.slot_7_8 = slot_7_8
+            new_turf.slot_8_9 = slot_8_9
+            new_turf.slot_9_10 = slot_9_10
+            
             new_turf.save()
             return redirect(home)
 

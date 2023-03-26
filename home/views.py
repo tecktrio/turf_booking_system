@@ -246,34 +246,35 @@ def delete(request,turf_name):
     # print(turf_name)
     turf = Turf.objects.get(turf_name=turf_name)
     myturf = Booked_turf.objects.get(turf_name = turf_name)
-    slot = myturf.slot
+    print(myturf.slot)
 
-    if slot == '9_10a':
+    if myturf.slot == '9_10a':
         turf.slot_9_10a = True
-    if slot == '10_11':
+    if myturf.slot == '10_11':
         turf.slot_10_11 = True
-    if slot == '11_12':
+    if myturf.slot == '11_12':
         turf.slot_11_12 = True
-    if slot == '1_2':
+    if myturf.slot == '1_2':
         turf.slot_1_2 = True
-    if slot == '2_3':
+    if myturf.slot == '2_3':
         turf.slot_2_3 = True
-    if slot == '3_4':
+    if myturf.slot == '3_4':
         turf.slot_3_4 = True
-    if slot == '4_5':
+    if myturf.slot == '4_5':
         turf.slot_4_5 = True
-    if slot == '5_6':
+    if myturf.slot == '5_6':
         turf.slot_5_6 = True
-    if slot == '6_7':
+    if myturf.slot == '6_7':
         turf.slot_6_7 = True
-    if slot == '7_8':
+    if myturf.slot == '7_8':
         turf.slot_7_8 = True
-    if slot == '8_9':
+    if myturf.slot == '8_9':
         turf.slot_8_9 = True
-    if slot == '9_10':
+    if myturf.slot == '9_10':
         turf.slot_9_10 = True
 
     myturf.delete()
+    turf.save()
     # print(myturf.turf_name)
     
     return redirect(profile)
